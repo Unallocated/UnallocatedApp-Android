@@ -15,11 +15,16 @@ with the following features:
 
 Milestones
 -------------
-1. document methods
-2. build unit tests
-3. code classes
-4. design UI
-5. Build release
+1. Determine if Space is open (4/7/2013)
+2. Background Service to Alert when Space is open (4/14/2013) 
+3. Display Wall (4/21/2013)
+4. Display Latest Blog Post (4/28/2013)
+5. Display Latest Blog Post (4/28/2013)
+6. Read/Write to the LED Sign (5/12/2013)
+7. Rollcall (5/17/2013)
+8. Manual Check-in (5/22/2013)
+9. Automatic Check-in (6/2/2013)
+10. Build Release (6/20/2013)
 
 Unallocated Space
 ---------------------------
