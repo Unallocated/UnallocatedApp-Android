@@ -1,13 +1,16 @@
+import java.lang.String;
+
 /**
  * Contains information gathered from the UAS website.
  */
-public class Info {
+public class Info extends Data {
 
 /**
- * Sets urlFeed and calls refresh().
+ * Sets urlFeed
  */
-  public Info() {
-  }
+    Info(String url) {
+        super(url);
+    }
 
 /**
  * Fetches updates from UAS.
@@ -25,9 +28,19 @@ public class Info {
  * <p>
  * Test by checking message. lastUpdate, and status.
  */
-  public void refresh() {
-  }
+    public String getMessage() {
+        String message=this.message;
 
+        if(this.isStale()) {
+          /* call HttpUrlConnection and get new data */
+          /* this.setMessage(message); */
+        }
+
+        return message;
+    }
+}
+
+/** THIS WILL BE MOVED TO AN INTERFACE */
 /**
  * Used for sending updates to UAS.
  * 
@@ -38,6 +51,5 @@ public class Info {
  * <p>
  * Test for exceptions.
  */
-  public void post() {
-  }
-}
+//    public void post() {
+//    }
