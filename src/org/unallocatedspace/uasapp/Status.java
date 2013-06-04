@@ -1,3 +1,5 @@
+package org.unallocatedspace.uasapp;
+
 /**
  * This class is a container which keeps other objects.
  */

@@ -1,3 +1,4 @@
+package org.unallocatedspace.uasapp;
 import java.lang.String;
 
 /**
