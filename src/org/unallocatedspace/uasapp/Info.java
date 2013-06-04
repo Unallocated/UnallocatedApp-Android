@@ -1,4 +1,6 @@
 package org.unallocatedspace.uasapp;
+
+import android.app.Activity;
 import java.lang.String;
 
 /**
@@ -9,8 +11,8 @@ public class Info extends Data {
 /**
  * Sets urlFeed
  */
-    Info(String url) {
-        super(url);
+    Info(Activity activity, String url) {
+        super(activity, url);
     }
 
 /**

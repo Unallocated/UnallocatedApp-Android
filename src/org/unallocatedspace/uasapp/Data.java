@@ -1,6 +1,6 @@
 package org.unallocatedspace.uasapp;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import java.lang.String;
 import java.text.SimpleDateFormat;
@@ -12,11 +12,11 @@ import java.util.GregorianCalendar;
  * Contains information gathered from the UAS website.
  */
 public class Data {
-    protected SharedPreferences cache;
-    protected SharedPreferences.Editor editor;
-    protected String key;
-    protected static final String MESSAGE="Message";
-    protected static final String TIMESTAMP="Timestamp";
+    private SharedPreferences cache;
+    private SharedPreferences.Editor editor;
+    private String key;
+    private static final String MESSAGE="Message";
+    private static final String TIMESTAMP="Timestamp";
 
 /**
  * Constructor.
@@ -24,11 +24,9 @@ public class Data {
  * If cache doesn't have an entry, do not make one. Wait until setMessage()
  * has been called.
  */
-    public Data(String text) {
-        Context context = new Context();
-
+    public Data(Activity activity, String text) {
         this.key = text;
-        this.cache = context.getSharedPreferences(this.key, context.MODE_PRIVATE);
+        this.cache = activity.getSharedPreferences(this.key, activity.MODE_PRIVATE);
         this.editor = cache.edit();
     }
 
