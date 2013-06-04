@@ -1,5 +1,7 @@
 package org.unallocatedspace.uasapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import java.lang.String;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,9 +12,11 @@ import java.util.GregorianCalendar;
  * Contains information gathered from the UAS website.
  */
 public class Data {
-    protected long lastUpdate;
-    protected String message;
+    protected SharedPreferences cache;
+    protected SharedPreferences.Editor editor;
     protected String key;
+    protected static final String MESSAGE="Message";
+    protected static final String TIMESTAMP="Timestamp";
 
 /**
  * Constructor.
@@ -21,25 +25,21 @@ public class Data {
  * has been called.
  */
     public Data(String text) {
-        this.key=text;
+        Context context = new Context();
 
-        /* check if cache already has entry */
-        if(false) {
-        } else {
-            this.lastUpdate=0;
-            this.message="";
-        }
+        this.key = text;
+        this.cache = context.getSharedPreferences(this.key, context.MODE_PRIVATE);
+        this.editor = cache.edit();
     }
 
     public String getLastUpdate() {
-        /** take lastUpdate and convert to string in local TZ */
-        Date now = new Date(this.lastUpdate);
+        Date now = new Date(this.cache.getLong(this.TIMESTAMP, 0));
         SimpleDateFormat date = new SimpleDateFormat();
         return date.format(now);
     }
 
     public String getMessage() {
-        return this.message;
+        return this.cache.getString(this.MESSAGE, "");
     }
 
     public boolean isStale() {
@@ -48,8 +48,9 @@ public class Data {
 
     public boolean isStale(long duration) {
         DataTime clock = new DataTime();
+        long timestamp = this.cache.getLong(this.TIMESTAMP, 0);
 
-        return clock.isExhausted(this.lastUpdate, duration);
+        return clock.isExhausted(timestamp, duration);
     }
 
     public void setMessage() {
@@ -68,9 +69,9 @@ public class Data {
         if(timestamp > now.getTimeInMillis()) {
             /* throw exception */
         } else {
-            /* save to cache here */
-            this.message = message;
-            this.lastUpdate = timestamp;
+           this.editor=this.editor.putLong(this.TIMESTAMP, timestamp);
+           this.editor=this.editor.putString(this.MESSAGE, message);
+           this.editor.apply();
         }
     }
 }
