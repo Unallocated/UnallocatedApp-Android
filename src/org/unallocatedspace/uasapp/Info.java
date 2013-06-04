@@ -30,14 +30,12 @@ public class Info extends Data {
  * Test by checking message. lastUpdate, and status.
  */
     public String getMessage() {
-        String message=this.message;
-
         if(this.isStale()) {
           /* call HttpUrlConnection and get new data */
           /* this.setMessage(message); */
         }
 
-        return message;
+        return super.getMessage();
     }
 }
 
