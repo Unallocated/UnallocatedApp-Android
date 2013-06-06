@@ -89,4 +89,11 @@
     <!-- version-tag: 1 -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
 
+
+<!-- maetrics added the following -->
+    <mkdir dir="doc/"/>
+    <javadoc destdir="doc/" classpath="${sdk.dir}/platforms/android-17">
+      <fileset dir="src/org/unallocatedspace/uasapp/" includes="*.java"/>
+    </javadoc>
+
 </project>
