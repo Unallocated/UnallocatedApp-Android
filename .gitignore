@@ -1,4 +1,5 @@
 *.class
+local.properties
 
 # Package Files #
 *.jar

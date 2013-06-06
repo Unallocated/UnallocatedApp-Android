@@ -1,18 +1,29 @@
 package org.unallocatedspace.uasapp;
 
 import android.app.Activity;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.lang.String;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Contains information gathered from the UAS website.
  */
 public class Info extends Data {
+    private URL url;
 
 /**
- * Sets urlFeed
+ * Sets urlFeed.
+ * This doesn't catch Exception MalformedURLException, because we do not have
+ * a plan on how to deal with errors yet, and this _shouldn't_ occur. That
+ * said it probably will.
  */
-    Info(Activity activity, String url) {
+    Info(Activity activity, String url) throws MalformedURLException  {
         super(activity, url);
+
+        this.url = new URL(url);
     }
 
 /**
@@ -32,25 +43,40 @@ public class Info extends Data {
  * Test by checking message. lastUpdate, and status.
  */
     public String getMessage() {
+        int i;
+        byte[] buffer;
+        char[] data;
+        String message;
+        HttpURLConnection connection;
+        BufferedInputStream in;
+
         if(this.isStale()) {
-          /* call HttpUrlConnection and get new data */
-          /* this.setMessage(message); */
+            connection = null;
+
+            try {
+                connection = (HttpURLConnection) this.url.openConnection();
+                in = new BufferedInputStream(connection.getInputStream());
+                buffer = new byte[in.available()];
+                in.read(buffer, 0, in.available());
+                data = new char[buffer.length];
+ 
+                for(i=0;i < buffer.length ; i++) {
+                    data[i]=(char) buffer[i];
+                }
+
+                message=String.copyValueOf(data);
+                this.setMessage(message);
+            } catch(IOException read) {
+/* We should catch this exception but I don't know where to log it or how better
+ * to handle it. Will update this later.
+ */
+            } finally {
+                if(connection != null) {
+                    connection.disconnect();
+                }
+            }
         }
 
         return super.getMessage();
     }
 }
-
-/** THIS WILL BE MOVED TO AN INTERFACE */
-/**
- * Used for sending updates to UAS.
- * 
- * Calls HttpUrlConnection using the value in urlFeed, the method provided,
- * and the values in argvalpairs.
- * <p>
- * This methods passes any exceptions.
- * <p>
- * Test for exceptions.
- */
-//    public void post() {
-//    }
