@@ -1,27 +1,41 @@
 package org.unallocatedspace.uasapp;
 
+import android.app.Activity;
+import java.lang.String;
+import java.net.MalformedURLException;
+
 /**
  * This class is a container which keeps other objects.
  */
 public class Status {
+    private static final String OCCUPANCY_SENSOR =
+        "http://www.unallocatedspace.org/status";
+    private Info space;
+    private String spaceStatus;
 
 /**
  * Creates member objects from the Info class and adds them to the array
  * members.
  */
-  public Status() {
-  }
+    Status(Activity activity) {
+        try {
+           this.space = new Info(activity, OCCUPANCY_SENSOR);
+           this.refresh();
+        } catch(MalformedURLException e) {
+/* We should catch this exception but I don't know where to log it or how better
+ * to handle it. Will update this later.
+ */
+        }
+    }
 
 /**
  * Refreshes all member objects.
  *
- * Calls Refresh() methods of all other objects to keep them up to date.
- * Exceptions are passed along. Each time the activity page awakens, it will
- * call this method to ensure freshness.
- * <p>
- * To test wether this succeeded cbeck the last update attribute of a member
- * object.
+ * Calls getMessage() methods of all other objects to keep them up to date.
+ * Each time the activity page awakens, it will call this method to ensure
+ * freshness.
  */
-  public void Refresh() {
-  }
+    public void refresh() {
+        this.spaceStatus = this.space.getMessage();
+    }
 }
