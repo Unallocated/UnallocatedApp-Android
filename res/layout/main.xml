@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="Hello World, InfoPage"
-    />
-</LinearLayout>
+    android:orientation="vertical"
+    android:paddingLeft="1dp" >
 
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="0.45"
+	    android:contentDescription="@string/status_btn_desc"
+	    android:drawableLeft="@drawable/greyled"
+	    android:gravity="center_vertical"
+	    android:text="@string/status_default_msg" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="match_parent"
+        android:layout_height="222dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/thewall"
+        android:contentDescription="@string/wall_btn_desc"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:onClick="launchWallPhoto" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/events_lbl"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1.00"
+        android:text="@string/events_default_msg" />
+        <!--  android:onClick="launchEventsDialog" -->
+
+</LinearLayout>
