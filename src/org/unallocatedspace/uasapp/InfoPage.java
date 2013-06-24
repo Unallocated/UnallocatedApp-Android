@@ -41,13 +41,10 @@ public class InfoPage extends Activity {
 		Log.d(LOG_CHANNEL, "Clicked on the wall image.");
 		Intent i = new Intent();
 		i.setAction(android.content.Intent.ACTION_VIEW);
-		Uri path = Uri.parse("file:///android_asset/images/thewall.jpg"); // +
-																			// R.drawable.thewall);
+		Uri path = Uri.parse(this.wall.getImgURI().toString());
+
 		Log.d(LOG_CHANNEL, "Path: " + path);
 		i.setDataAndType(path, "image/jpg");
 		startActivity(i);
-
-		// startActivity(new Intent(Intent.ACTION_VIEW,
-		// Uri.parse("org.unallocatedspace.uasapp/drawable/thewall")));
 	}
 }
