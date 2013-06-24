@@ -6,6 +6,7 @@
     android:paddingLeft="1dp" >
 
 	<TextView
+	    android:id="@+id/statusText"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_weight="0.45"
@@ -15,11 +16,10 @@
 	    android:text="@string/status_default_msg" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/wallImgButton"
         android:layout_width="match_parent"
         android:layout_height="222dip"
         android:scaleType="fitXY"
-        android:src="@drawable/thewall"
         android:contentDescription="@string/wall_btn_desc"
         android:layout_marginTop="5dip"
         android:layout_marginBottom="5dip"
