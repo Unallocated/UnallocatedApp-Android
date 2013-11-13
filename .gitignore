@@ -1,0 +1,12 @@
+*.class
+local.properties
+.classpath
+.project
+project.properties
+bin
+gen
+
+# Package Files #
+*.jar
+*.war
+*.ear

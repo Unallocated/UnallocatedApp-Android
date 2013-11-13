@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UASApp</string>
+    <string name="status_default_msg">Status Not Yet Detected.</string>
+    <string name="status_btn_desc">Status Icon</string>
+    <string name="wall_btn_desc">Wall Image</string>
+    <string name="events_lbl">Today at Unallocated Space:</string>
+    <string name="events_default_msg">No Events Retreived.</string>
+</resources>
